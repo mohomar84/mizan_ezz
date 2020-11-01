@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ezz.mizan</groupId>
     <artifactId>mizan</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>mizan</name>
     <description>Mizan Project</description>
 
@@ -51,12 +51,14 @@
             </exclusions>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
             </plugin>
         </plugins>
     </build>
