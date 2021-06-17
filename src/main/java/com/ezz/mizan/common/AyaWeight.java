@@ -4,6 +4,7 @@ import com.ezz.mizan.model.AyaWord;
 import com.ezz.mizan.model.FullAya;
 import com.ezz.mizan.model.WordAlphabets;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +14,9 @@ public class AyaWeight {
 
     private static Map<String, Integer> arabicAlphabetWeight;
 
-    public static FullAya getAyaWeight(String aya){
+    public static FullAya getAyaWeight(String theAya){
         FullAya fullAya = new FullAya();
+        String aya = Normalizer.normalize(theAya, Normalizer.Form.NFKD).replaceAll("\\p{M}", "");
         fullAya.setFullAya(aya);
         String[] arrOfStr = aya.split(" ");
         Integer ayaWeight = 0 ;
@@ -46,8 +48,12 @@ public class AyaWeight {
             System.err.println("الحرف : " + c + "  الوزن : " + getAlphabetWeight(String.valueOf(c)));
 
             wordAlphabet.setAlphabet(String.valueOf(c));
-            wordAlphabet.setAlphabetWeight(alphabetWeight);
-
+            if (!alphabetWeight.equals(null)){
+                System.err.println("the word is not exist ");
+                wordAlphabet.setAlphabetWeight(0);
+            }else {
+                wordAlphabet.setAlphabetWeight(alphabetWeight);
+            }
             ayaWordsAlphabets.add(wordAlphabet);
             wordWeight = wordWeight+ alphabetWeight;
         }
@@ -93,6 +99,12 @@ public class AyaWeight {
         arabicAlphabetWeight.put("ا", 1);
         arabicAlphabetWeight.put("أ", 1);
         arabicAlphabetWeight.put("ة", 5);
+        arabicAlphabetWeight.put("ؤ", 6);
+        arabicAlphabetWeight.put("إ", 1);
+        arabicAlphabetWeight.put("ئ", 1);
+        arabicAlphabetWeight.put("ء", 1);
+        arabicAlphabetWeight.put("آ", 1);
+        arabicAlphabetWeight.put("ى", 10);
 
     }
 }

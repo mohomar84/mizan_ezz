@@ -35,6 +35,7 @@ public class AlphabetConstants {
     public static int ا = 1;
     public static int أ = 1;
     public static int ة = 5;
+    public static int ؤ = 6;
     public static List<String > sp_alpha =
             new ArrayList<>(Arrays.asList("إ", "أ", "ٱ", "آ", "ا", "ى", "ؤ", "ئ", "ة"));
 
