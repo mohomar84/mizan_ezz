@@ -1,15 +1,16 @@
 package com.ezz.mizan.model;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "quran_text")
+//@Entity
+//@Table(name = "quran_text")
 public class QuranText {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @Id
+    // @Column(name = "index")
     private static int index;
+    //  @Column(name = "sura")
     private static int sura;
+    // @Column(name = "aya")
     private static int aya;
+    //  @Column(name = "text")
     private static String text;
 
     public QuranText() {

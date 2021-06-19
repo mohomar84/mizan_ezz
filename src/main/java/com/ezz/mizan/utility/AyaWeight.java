@@ -1,4 +1,4 @@
-package com.ezz.mizan.common;
+package com.ezz.mizan.utility;
 
 import com.ezz.mizan.model.AyaWord;
 import com.ezz.mizan.model.FullAya;
@@ -14,12 +14,12 @@ public class AyaWeight {
 
     private static Map<String, Integer> arabicAlphabetWeight;
 
-    public static FullAya getAyaWeight(String theAya){
+    public static FullAya getAyaWeight(String theAya) {
         FullAya fullAya = new FullAya();
         String aya = Normalizer.normalize(theAya, Normalizer.Form.NFKD).replaceAll("\\p{M}", "");
         fullAya.setFullAya(aya);
         String[] arrOfStr = aya.split(" ");
-        Integer ayaWeight = 0 ;
+        Integer ayaWeight = 0;
 
         List<AyaWord> ayaWords = new ArrayList<AyaWord>();
 
@@ -27,47 +27,48 @@ public class AyaWeight {
             System.out.println(" الكلمه : " + a);
             AyaWord ayaWord = getAyaWordWeight(a);
             ayaWords.add(ayaWord);
-            System.out.println("  الكلمه :  " + a + " الوزن :  " + ayaWord.getWordWeight()) ;
-            ayaWeight = ayaWeight + ayaWord.getWordWeight() ;
+            System.out.println("  الكلمه :  " + a + " الوزن :  " + ayaWord.getWordWeight());
+            ayaWeight = ayaWeight + ayaWord.getWordWeight();
         }
         fullAya.setAyaWords(ayaWords);
         fullAya.setAyaWeight(ayaWeight);
         return fullAya;
     }
 
-    private static AyaWord getAyaWordWeight(String ayaOneWord){
-        Integer wordWeight = 0 ;
+    private static AyaWord getAyaWordWeight(String ayaOneWord) {
+        Integer wordWeight = 0;
         AyaWord ayaWord = new AyaWord();
         ayaWord.setAyaWord(ayaOneWord);
         List<WordAlphabets> ayaWordsAlphabets = new ArrayList<WordAlphabets>();
 
-        for (char c: ayaOneWord.toCharArray()) {
+        for (char c : ayaOneWord.toCharArray()) {
             WordAlphabets wordAlphabet = new WordAlphabets();
 
             Integer alphabetWeight = getAlphabetWeight(String.valueOf(c));
             System.err.println("الحرف : " + c + "  الوزن : " + getAlphabetWeight(String.valueOf(c)));
 
             wordAlphabet.setAlphabet(String.valueOf(c));
-            if (!alphabetWeight.equals(null)){
+            if (!alphabetWeight.equals(null)) {
                 System.err.println("the word is not exist ");
                 wordAlphabet.setAlphabetWeight(0);
-            }else {
+            } else {
                 wordAlphabet.setAlphabetWeight(alphabetWeight);
             }
             ayaWordsAlphabets.add(wordAlphabet);
-            wordWeight = wordWeight+ alphabetWeight;
+            wordWeight = wordWeight + alphabetWeight;
         }
         ayaWord.setWordWeight(wordWeight);
         ayaWord.setWordAlphabets(ayaWordsAlphabets);
         return ayaWord;
     }
 
-   // private static WordAlphabets getAyaAlphabetWeight(String ayaWord){}
+    // private static WordAlphabets getAyaAlphabetWeight(String ayaWord){}
 
     public static Integer getAlphabetWeight(String key) {
         return arabicAlphabetWeight.get(key);
     }
-    static{
+
+    static {
         arabicAlphabetWeight = new HashMap<>();
         arabicAlphabetWeight.put("ي", 10);
         arabicAlphabetWeight.put("و", 6);

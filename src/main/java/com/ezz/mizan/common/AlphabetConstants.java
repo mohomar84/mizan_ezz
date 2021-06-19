@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AlphabetConstants {
-    public static int  ي = 10;
+    public static int ي = 10;
     public static int و = 6;
     public static int ه = 5;
     public static int ن = 50;
@@ -36,7 +36,7 @@ public class AlphabetConstants {
     public static int أ = 1;
     public static int ة = 5;
     public static int ؤ = 6;
-    public static List<String > sp_alpha =
+    public static List<String> sp_alpha =
             new ArrayList<>(Arrays.asList("إ", "أ", "ٱ", "آ", "ا", "ى", "ؤ", "ئ", "ة"));
 
 }
