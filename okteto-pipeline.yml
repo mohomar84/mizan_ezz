@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: mizan
-          image: okteto.dev/mizan-service:dev
+          image: okteto.dev/mizan:dev
           ports:
-            - containerPort: 8080
+            - containerPort: 5500
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -44,5 +44,5 @@ spec:
   selector:
     app: mizan
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 5500
+      targetPort: 5500
